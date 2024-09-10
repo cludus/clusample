@@ -2,16 +2,22 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.3.3'
 	id 'io.spring.dependency-management' version '1.1.6'
+	id 'com.google.cloud.tools.jib' version '3.4.3'
+	id 'maven-publish'
+	id 'net.researchgate.release' version '3.0.2'
 }
 
 group = 'com.cludus'
-version = '0.0.1-SNAPSHOT'
+description = 'Tool for importing and exporting data from various databases'
 
 java {
 	toolchain {
 		languageVersion = JavaLanguageVersion.of(21)
 	}
 }
+
+def ghUser = System.getenv().getOrDefault('GH_USER', '')
+def ghPass = System.getenv().getOrDefault('GH_PASS', '')
 
 configurations {
 	compileOnly {
@@ -21,6 +27,14 @@ configurations {
 
 repositories {
 	mavenCentral()
+	maven {
+		name = "GitHubPackages"
+		url = uri("https://maven.pkg.github.com/cludus/maven")
+		credentials {
+			username = ghUser
+			password = ghPass
+		}
+	}
 }
 
 dependencies {
@@ -39,6 +53,8 @@ dependencies {
 	implementation 'org.apache.kafka:kafka-streams'
 	implementation 'org.liquibase:liquibase-core'
 	implementation 'org.springframework.kafka:spring-kafka'
+	implementation "org.springdoc:springdoc-openapi-starter-common:2.2.0"
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0'
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.h2database:h2'
 	runtimeOnly 'com.microsoft.sqlserver:mssql-jdbc'
@@ -70,4 +86,55 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+
+tasks.named('processResources') {
+	expand(project.properties)
+}
+
+release {
+	tagTemplate = '${version}'
+}
+
+tasks.named('afterReleaseBuild') {
+	dependsOn tasks.jib
+}
+
+jib {
+	from {
+		image = 'amazoncorretto:21'
+	}
+	to {
+		image = 'ghcr.io/cludus/clugest'
+		tags = ["$version", 'latest']
+		auth {
+			username = ghUser
+			password = ghPass
+		}
+	}
+	container {
+		jvmFlags = ['-Xms1024M', '-Xmx3g']
+		mainClass = 'com.cludus.clugest.DemoApplication'
+		ports = ['8080']
+		format = 'OCI'
+	}
+}
+
+publishing {
+	publications {
+		mavenJava(MavenPublication) {
+			from components.java
+		}
+	}
+	repositories {
+		maven {
+			name = "GitHubPackages"
+			url = "https://maven.pkg.github.com/cludus/clugest"
+			credentials {
+				username = ghUser
+				password = ghPass
+			}
+		}
+	}
 }
