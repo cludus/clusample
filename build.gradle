@@ -115,7 +115,7 @@ jib {
 	}
 	container {
 		jvmFlags = ['-Xms1024M', '-Xmx3g']
-		mainClass = 'com.cludus.clugest.DemoApplication'
+		mainClass = 'com.cludus.clugest.ClugestApplication'
 		ports = ['8080']
 		format = 'OCI'
 	}
