@@ -1,5 +1,5 @@
 package com.cludus.clugest.model;
 
-public class CassChatMessages {
+public class CassChatMessage {
 
 }

@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 @Profile("jpa")
-public interface JpaRsPropertyRepository extends JpaRepository<JpaRealStateProperty, Long> {
+public interface JpaRealStatePropertyRepository extends JpaRepository<JpaRealStateProperty, Long> {
 }
