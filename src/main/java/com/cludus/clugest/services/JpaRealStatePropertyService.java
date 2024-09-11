@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Profile("jpa")
-public class JpaRsPropertyService {
+public class JpaRealStatePropertyService {
 
     public JpaPersonResp findAll(PageReq page) {
         return null;

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @Profile("jpa")
 @RestController("/jpa")
-public class JpaController {
+public class JpaPersonController {
 
 
 
