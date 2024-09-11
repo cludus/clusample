@@ -1,4 +1,7 @@
 package com.cludus.clugest.repositories;
 
-public class N4jEconomicEntityRepository {
+import org.springframework.context.annotation.Profile;
+
+@Profile("neo4j")
+public interface N4jEconomicEntityRepository {
 }

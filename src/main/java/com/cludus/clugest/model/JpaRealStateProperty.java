@@ -12,10 +12,11 @@ import org.springframework.context.annotation.Profile;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "clugest_real_state_properties")
 @Profile("jpa")
 public class JpaRealStateProperty {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(cascade = CascadeType.ALL)

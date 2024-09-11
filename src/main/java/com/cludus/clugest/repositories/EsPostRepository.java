@@ -1,4 +1,7 @@
 package com.cludus.clugest.repositories;
 
-public class EsPostRepository {
+import org.springframework.context.annotation.Profile;
+
+@Profile("elasticsearch")
+public interface EsPostRepository {
 }

@@ -52,11 +52,12 @@ services:
     image: gvenzl/oracle-free:latest
 
   postgres:
+    hostname: postgres.clugest.home
     image: postgres:latest
     environment:
-      POSTGRES_USER: test
-      POSTGRES_PASSWORD: test
-      POSTGRES_DB: test
+      POSTGRES_USER: clugestuser
+      POSTGRES_PASSWORD: kjl3J9h9hH32Gddhk
+      POSTGRES_DB: clugest
 
   redis:
     image: redis:latest

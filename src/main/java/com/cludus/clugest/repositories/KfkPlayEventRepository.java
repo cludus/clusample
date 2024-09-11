@@ -1,4 +1,7 @@
 package com.cludus.clugest.repositories;
 
-public class KfkPlayEventRepository {
+import org.springframework.context.annotation.Profile;
+
+@Profile("kafka")
+public interface KfkPlayEventRepository {
 }

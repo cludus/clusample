@@ -34,6 +34,24 @@ JDBC_URL=jdbc:postgresql://localhost:5432/clugest
 HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQLDialect
 ```
 
+use the following configuration for a complete postgres setup
+
+```
+-DALLOWED_ORIGIN_PATTERNS=http://localhost:[*]
+-DACTIVE_PROFILES=jpa
+-DLIQUIBASE_ENABLED=true
+-DLIQUIBASE_CLEAR_CHECKSUM=false
+-DJPA_ENABLED=true
+-DJDBC_USERNAME=clugestuser
+-DJDBC_PASSWORD=kjl3J9h9hH32Gddhk
+-DHIKARI_MINIMUM_IDLE=1
+-DHIKARI_MAXIMUM_POOL_SIZE=10
+-DHIKARI_CONNECTION_TIMEOUT=30000
+-DJDBC_DRIVER=org.postgresql.Driver
+-DJDBC_URL=jdbc:postgresql://postgres.clugest.home:5432/clugest
+-DHIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQLDialect
+```
+
 ## MariaDB
 
 ```

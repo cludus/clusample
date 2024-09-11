@@ -1,4 +1,7 @@
 package com.cludus.clugest.repositories;
 
-public class MgoProductRepository {
+import org.springframework.context.annotation.Profile;
+
+@Profile("mongodb")
+public interface MgoProductRepository {
 }
