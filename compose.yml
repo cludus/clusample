@@ -24,6 +24,7 @@ services:
           - discovery.type=single-node
 
   zookeeper:
+    hostname: zookeeper.clugest.home
     image: confluentinc/cp-zookeeper:latest
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
@@ -31,6 +32,7 @@ services:
       ZOOKEEPER_SYNC_LIMIT: 2
 
   kafka:
+    hostname: kafka.clugest.home
     image: confluentinc/cp-kafka:latest
     environment:
       KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
