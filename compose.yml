@@ -18,6 +18,7 @@ services:
 #        CASSANDRA_DATACENTER: dc1
 
   elasticsearch:
+      hostname: elasticsearch.clugest.home
       image: elasticsearch:7.17.10
       environment:
           - discovery.type=single-node
