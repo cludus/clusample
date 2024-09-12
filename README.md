@@ -129,9 +129,11 @@ NEO4J_PASSWORD=password
 Setup the following environment variables:
 
 ```
-CASSANDRA_CONTACT_POINTS=localhost
+CASSANDRA_CONTACT_POINTS=localhost:9042
 CASSANDRA_USERNAME=cassandra
 CASSANDRA_PASSWORD=cassandra
+CASSANDRA_KEYSPACE=clugest
+CASSANDRA_LOCAL_DC=dc1
 ```
 
 # Kafka Configuration

@@ -7,13 +7,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.context.annotation.Profile;
 
+@Entity
+@Table(name = "clugest_persons")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table(name = "clugest_persons")
-@Profile("jpa")
 public class JpaPerson {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

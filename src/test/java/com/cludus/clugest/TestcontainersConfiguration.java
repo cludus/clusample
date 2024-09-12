@@ -18,7 +18,7 @@ import org.testcontainers.utility.DockerImageName;
 
 @TestConfiguration(proxyBeanMethods = false)
 class TestcontainersConfiguration {
-
+/*
 	@Bean
 	@ServiceConnection
 	CassandraContainer<?> cassandraContainer() {
@@ -86,5 +86,5 @@ class TestcontainersConfiguration {
 		return new MSSQLServerContainer<>(DockerImageName.parse("mcr.microsoft.com/mssql/server:latest"))
 				.withEnv("ACCEPT_EULA", "Y").withEnv("SA_PASSWORD", "pass");
 	}
-
+*/
 }

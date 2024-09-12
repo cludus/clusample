@@ -7,13 +7,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.context.annotation.Profile;
 
+@Entity
+@Table(name = "clugest_real_state_properties")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table(name = "clugest_real_state_properties")
-@Profile("jpa")
 public class JpaRealStateProperty {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

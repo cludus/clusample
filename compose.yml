@@ -8,7 +8,14 @@ services:
       MYSQL_PASSWORD: test
 
   cassandra:
-      image: cassandra:latest
+      hostname: cassandra.clugest.home
+      image: bitnami/cassandra:latest
+      environment:
+        CASSANDRA_CLUSTER_NAME: clugest_cluster
+        CASSANDRA_USER: clugest
+        CASSANDRA_PASSWORD_SEEDER: yes
+        CASSANDRA_PASSWORD: 3kcd9j394j9gerfj98
+#        CASSANDRA_DATACENTER: dc1
 
   elasticsearch:
       image: elasticsearch:7.17.10
