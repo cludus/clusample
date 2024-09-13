@@ -137,9 +137,9 @@ Setup the following environment variables:
 
 ```
 ACTIVE_PROFILES=mongodb
-MONGODB_URI=mongodb://localhost:27017/clugest
-MONGODB_USERNAME=admin
-MONGODB_PASSWORD=password
+MONGODB_URI=mongodb://mongo.clugest.home:27017/clugest
+MONGODB_USERNAME=clugestuser
+MONGODB_PASSWORD=kjl3J9h9hH32Gddhk
 ```
 
 # Elasticsearch Configuration
