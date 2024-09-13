@@ -1,11 +1,34 @@
 services:
-  mariadb:
-    image: mariadb:5
+  sqlserver:
+    hostname: sqlserver.clugest.home
+    image: mcr.microsoft.com/mssql/server:latest
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: test
-      MYSQL_USER: test
-      MYSQL_PASSWORD: test
+      SA_PASSWORD: kjl3J9h9hH32Gddhk
+      ACCEPT_EULA: Y
+      MSSQL_PID: Developer
+
+  oracle:
+    hostname: oracle.clugest.home
+    environment:
+      - ORACLE_PASSWORD=kjl3J9h9hH32Gddhk
+    image: gvenzl/oracle-free:latest
+
+  postgres:
+    hostname: postgres.clugest.home
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: clugestuser
+      POSTGRES_PASSWORD: kjl3J9h9hH32Gddhk
+      POSTGRES_DB: clugest
+
+  mariadb:
+    hostname: mariadb.clugest.home
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: kjl3J9h9hH32Gddhk
+      MYSQL_DATABASE: clugest
+      MYSQL_USER: clugestuser
+      MYSQL_PASSWORD: kjl3J9h9hH32Gddhk
 
   cassandra:
       hostname: cassandra.clugest.home
@@ -56,26 +79,6 @@ services:
     environment:
       NEO4J_AUTH: neo4j/asd456HJg
 
-  oracle:
-    environment:
-      - ORACLE_PASSWORD=Test1234
-    image: gvenzl/oracle-free:latest
-
-  postgres:
-    hostname: postgres.clugest.home
-    image: postgres:latest
-    environment:
-      POSTGRES_USER: clugestuser
-      POSTGRES_PASSWORD: kjl3J9h9hH32Gddhk
-      POSTGRES_DB: clugest
-
   redis:
     hostname: redis.clugest.home
     image: redis:latest
-
-  sqlserver:
-    image: mcr.microsoft.com/mssql/server:latest
-    environment:
-      SA_PASSWORD: Test1234
-      ACCEPT_EULA: Y
-      MSSQL_PID: Developer

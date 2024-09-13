@@ -19,8 +19,8 @@ ACTIVE_PROFILES=jpa
 LIQUIBASE_ENABLED=true
 LIQUIBASE_CLEAR_CHECKSUM=false
 JPA_ENABLED=true
-JDBC_USERNAME=postgres
-JDBC_PASSWORD=postgres
+JDBC_USERNAME=<username>
+JDBC_PASSWORD=<password>
 HIKARI_MINIMUM_IDLE=1
 HIKARI_MAXIMUM_POOL_SIZE=10
 HIKARI_CONNECTION_TIMEOUT=30000
@@ -37,25 +37,25 @@ HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQLDialect
 ## MariaDB
 
 ```
-JDBC_DRIVER=
-JDBC_URL=
-HIBERNATE_DIALECT=
+JDBC_DRIVER=org.mariadb.jdbc.Driver
+JDBC_URL=jdbc:mariadb://mariadb.clugest.home:3306/clugest
+HIBERNATE_DIALECT=org.hibernate.dialect.MariaDBDialect
 ```
 
 ## Oracle
 
 ```
-JDBC_DRIVER=
-JDBC_URL=
-HIBERNATE_DIALECT=
+JDBC_DRIVER=oracle.jdbc.OracleDriver
+JDBC_URL=jdbc:oracle:thin:@//oracle.clugest.home:11521
+HIBERNATE_DIALECT=org.hibernate.dialect.OracleDialect
 ```
 
 ## MSSQL
 
 ```
-JDBC_DRIVER=
-JDBC_URL=
-HIBERNATE_DIALECT=
+JDBC_DRIVER=com.microsoft.sqlserver.jdbc.SQLServerDriver
+JDBC_URL=jdbc:sqlserver://sqlserver.clugest.home;databaseName=springbootdb
+HIBERNATE_DIALECT=org.hibernate.dialect.SQLServer2012Dialect
 ```
 
 ## Derby
@@ -101,6 +101,7 @@ ELASTICSEARCH_PASSWORD=password
 Setup the following environment variables:
 
 ```
+ACTIVE_PROFILES=neo4j
 NEO4J_URI=bolt://localhost:7687
 NEO4J_USERNAME=neo4j
 NEO4J_PASSWORD=password
@@ -111,6 +112,7 @@ NEO4J_PASSWORD=password
 Setup the following environment variables:
 
 ```
+ACTIVE_PROFILES=cassandra
 CASSANDRA_CONTACT_POINTS=localhost:9042
 CASSANDRA_USERNAME=cassandra
 CASSANDRA_PASSWORD=cassandra
@@ -123,6 +125,7 @@ CASSANDRA_LOCAL_DC=dc1
 Setup the following environment variables:
 
 ```
+ACTIVE_PROFILES=kafka
 KAFKA_BOOTSTRAP_SERVERS=localhost:9092
 KAFKA_ADMIN_CLIENT_ID=1
 KAFKA_CONSUMER_CLIENT_ID=1
