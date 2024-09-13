@@ -2,10 +2,8 @@ package com.cludus.clugest.repositories;
 
 import com.cludus.clugest.model.JpaRealStateProperty;
 import org.springframework.context.annotation.Profile;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.repository.CrudRepository;
 
-@Repository
 @Profile("jpa")
-public interface JpaRealStatePropertyRepository extends JpaRepository<JpaRealStateProperty, Long> {
+public interface JpaRealStatePropertyRepository extends CrudRepository<JpaRealStateProperty, Long> {
 }
