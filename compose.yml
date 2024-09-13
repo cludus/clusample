@@ -37,7 +37,7 @@ services:
         CASSANDRA_CLUSTER_NAME: clugest_cluster
         CASSANDRA_USER: clugest
         CASSANDRA_PASSWORD_SEEDER: yes
-        CASSANDRA_PASSWORD: 3kcd9j394j9gerfj98
+        CASSANDRA_PASSWORD: kjl3J9h9hH32Gddhk
 #        CASSANDRA_DATACENTER: dc1
 
   elasticsearch:
@@ -75,9 +75,10 @@ services:
       MYSQL_PASSWORD: test
 
   neo4j:
+    hostname: neo4j.clugest.home
     image: neo4j:latest
     environment:
-      NEO4J_AUTH: neo4j/asd456HJg
+      NEO4J_AUTH: neo4j/kjl3J9h9hH32Gddhk
 
   redis:
     hostname: redis.clugest.home

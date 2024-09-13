@@ -1,9 +1,10 @@
 package com.cludus.clugest.repositories;
 
+import com.cludus.clugest.model.N4jEconomicEntity;
 import org.springframework.context.annotation.Profile;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.neo4j.repository.Neo4jRepository;
 
-@Repository
 @Profile("neo4j")
-public class N4jEconomicEntityRepository {
+public interface N4jEconomicEntityRepository extends Neo4jRepository<N4jEconomicEntity, Long> {
+    N4jEconomicEntity findByName(String name);
 }

@@ -159,9 +159,9 @@ Setup the following environment variables:
 
 ```
 ACTIVE_PROFILES=neo4j
-NEO4J_URI=bolt://localhost:7687
+NEO4J_URI=bolt://neo4j.clugest.home:7687
 NEO4J_USERNAME=neo4j
-NEO4J_PASSWORD=password
+NEO4J_PASSWORD=kjl3J9h9hH32Gddhk
 ```
 
 # Cassandra Configuration
