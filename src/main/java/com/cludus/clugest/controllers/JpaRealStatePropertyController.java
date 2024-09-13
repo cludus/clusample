@@ -1,6 +1,7 @@
 package com.cludus.clugest.controllers;
 
 import com.cludus.clugest.services.JpaPersonService;
+import com.cludus.clugest.services.JpaRealStatePropertyService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class JpaRealStatePropertyController {
 
     @Autowired
-    private JpaRealStatePropertyController service;
+    private JpaRealStatePropertyService service;
 
     @GetMapping("/find-all")
     public void findAll() {

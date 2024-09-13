@@ -38,7 +38,7 @@
       </jdbc-additional-properties>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="Oracle" uuid="d3a6a097-3dc7-4b63-9011-ca4a3d88c642">
+    <data-source source="LOCAL" name="oracle.clugest.home" uuid="d3a6a097-3dc7-4b63-9011-ca4a3d88c642">
       <driver-ref>oracle.19</driver-ref>
       <synchronize>true</synchronize>
       <auto-commit>false</auto-commit>

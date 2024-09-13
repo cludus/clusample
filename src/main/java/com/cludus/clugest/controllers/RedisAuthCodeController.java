@@ -1,6 +1,7 @@
 package com.cludus.clugest.controllers;
 
 import com.cludus.clugest.services.N4jEconomicEntityService;
+import com.cludus.clugest.services.RedisAuthCodeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(path = "/redis/auth-code", produces = MediaType.APPLICATION_JSON_VALUE)
 public class RedisAuthCodeController {
     @Autowired
-    private RedisAuthCodeController service;
+    private RedisAuthCodeService service;
 
     @GetMapping("/find-all")
     public void findAll() {
