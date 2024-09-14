@@ -1,15 +1,14 @@
 package com.cludus.clugest.controllers;
 
-import com.cludus.clugest.services.KfkPlayEventService;
+import com.cludus.clugest.dtos.MgoProductDto;
 import com.cludus.clugest.services.MgoProductService;
+import java.util.List;
+import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @Profile("mongodb")
@@ -20,12 +19,17 @@ public class MgoProductController {
     private MgoProductService service;
 
     @GetMapping("/find-all")
-    public void findAll() {
-        log.error("JPA reading");
+    public List<MgoProductDto> findAll() {
+        return service.findAll();
+    }
+
+    @GetMapping("/find/{name}")
+    public Optional<MgoProductDto> findByName(@PathVariable String name) {
+        return service.findProductByName(name);
     }
 
     @PostMapping
-    public void create() {
-        log.error("JPA writing");
+    public void create(@RequestBody MgoProductDto product) {
+        service.create(product);
     }
 }

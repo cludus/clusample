@@ -74,6 +74,7 @@ services:
   mongo:
     hostname: mongo.clugest.home
     environment:
+      - MONGO_INITDB_DATABASE=clugest
       - MONGO_INITDB_ROOT_USERNAME=clugestuser
       - MONGO_INITDB_ROOT_PASSWORD=kjl3J9h9hH32Gddhk
     image: mongo:latest
