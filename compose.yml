@@ -39,20 +39,20 @@ services:
       MYSQL_PASSWORD: kjl3J9h9hH32Gddhk
 
   cassandra:
-      hostname: cassandra.clugest.home
-      image: bitnami/cassandra:latest
-      environment:
-        CASSANDRA_CLUSTER_NAME: clugest_cluster
-        CASSANDRA_USER: clugest
-        CASSANDRA_PASSWORD_SEEDER: yes
-        CASSANDRA_PASSWORD: kjl3J9h9hH32Gddhk
-#        CASSANDRA_DATACENTER: dc1
+    hostname: cassandra.clugest.home
+    image: bitnami/cassandra:latest
+    environment:
+      CASSANDRA_CLUSTER_NAME: clugest_cluster
+      CASSANDRA_USER: clugest
+      CASSANDRA_PASSWORD_SEEDER: yes
+      CASSANDRA_PASSWORD: kjl3J9h9hH32Gddhk
+  #        CASSANDRA_DATACENTER: dc1
 
   elasticsearch:
-      hostname: elasticsearch.clugest.home
-      image: elasticsearch:7.17.10
-      environment:
-          - discovery.type=single-node
+    hostname: elasticsearch.clugest.home
+    image: elasticsearch:7.17.10
+    environment:
+      - discovery.type=single-node
 
   zookeeper:
     hostname: zookeeper.clugest.home
@@ -78,6 +78,10 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=clugestuser
       - MONGO_INITDB_ROOT_PASSWORD=kjl3J9h9hH32Gddhk
     image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./docker/mongo/:/data/db
 
   neo4j:
     hostname: neo4j.clugest.home

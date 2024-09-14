@@ -37,3 +37,4 @@ derby.log
 
 ### APP ###
 .env
+docker/

@@ -11,6 +11,6 @@ import org.springframework.stereotype.Repository;
 
 @Profile("mongodb")
 public interface MgoProductRepository extends MongoRepository<MgoProduct, String> {
-    @Query(value = "{name:'?0'}", fields = "{'name' : 1, 'description' : 1}")
-    Optional<MgoProduct> findProductByName(String name);
+    @Query(value = "{name:/?0/}", fields = "{'name' : 1, 'description' : 1}")
+    List<MgoProduct> searchProductsByName(String name);
 }

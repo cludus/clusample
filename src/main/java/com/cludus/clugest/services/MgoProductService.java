@@ -20,9 +20,8 @@ public class MgoProductService {
         return repo.findAll().stream().map(this::mapProduct).toList();
     }
 
-    public Optional<MgoProductDto> findProductByName(@NonNull String name) {
-        return repo.findProductByName(name)
-            .map(this::mapProduct);
+    public List<MgoProductDto> searchProductsByName(@NonNull String name) {
+        return repo.searchProductsByName(name).stream().map(this::mapProduct).toList();
     }
 
     public void create(@NonNull MgoProductDto dto) {

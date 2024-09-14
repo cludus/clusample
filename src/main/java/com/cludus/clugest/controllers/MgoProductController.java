@@ -3,7 +3,6 @@ package com.cludus.clugest.controllers;
 import com.cludus.clugest.dtos.MgoProductDto;
 import com.cludus.clugest.services.MgoProductService;
 import java.util.List;
-import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
@@ -23,9 +22,9 @@ public class MgoProductController {
         return service.findAll();
     }
 
-    @GetMapping("/find/{name}")
-    public Optional<MgoProductDto> findByName(@PathVariable String name) {
-        return service.findProductByName(name);
+    @GetMapping("/search/{name}")
+    public List<MgoProductDto> findByName(@PathVariable String name) {
+        return service.searchProductsByName(name);
     }
 
     @PostMapping
