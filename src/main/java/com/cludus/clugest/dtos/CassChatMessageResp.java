@@ -1,4 +1,4 @@
-package com.cludus.clugest.model;
+package com.cludus.clugest.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,13 +7,11 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.Table;
 
-@Table("clugest_chat_messages")
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CassChatMessage {
-    @PrimaryKey
+public class CassChatMessageResp {
     private String id;
 
     private String senderId;

@@ -1,15 +1,13 @@
 package com.cludus.clugest.controllers;
 
-import com.cludus.clugest.model.CassChatMessage;
+import com.cludus.clugest.dtos.CassChatMessageReq;
+import com.cludus.clugest.dtos.CassChatMessageResp;
 import com.cludus.clugest.services.CassChatMessageService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @Profile("cassandra")
@@ -22,12 +20,12 @@ public class CassChatMessageController {
 
     @GetMapping("/find-all")
     public void findAll() {
-        log.error("JPA reading");
+        log.error("cassandra reading");
     }
 
     @PostMapping
-    public void create() {
-        log.error("JPA writing");
+    public CassChatMessageResp addMessage(@RequestBody CassChatMessageReq message) {
+        return service.add(message);
     }
 
 }
