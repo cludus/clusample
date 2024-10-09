@@ -1,15 +1,14 @@
 package com.cludus.clugest.controllers;
 
+import com.cludus.clugest.dtos.RedisAuthCodeReq;
+import com.cludus.clugest.dtos.RedisAuthCodeResp;
 import com.cludus.clugest.services.N4jEconomicEntityService;
 import com.cludus.clugest.services.RedisAuthCodeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @Profile("redis")
@@ -25,7 +24,7 @@ public class RedisAuthCodeController {
     }
 
     @PostMapping
-    public void create() {
-        log.error("JPA writing");
+    public RedisAuthCodeResp create(@RequestBody RedisAuthCodeReq entity) {
+        return service.createCode(entity);
     }
 }

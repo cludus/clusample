@@ -1,6 +1,6 @@
 package com.cludus.clugest;
 
-import com.cludus.clugest.dtos.CassChatMessageReq;
+import com.cludus.clugest.dtos.JpaPersonReq;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -53,8 +53,11 @@ class PostgresTests {
 	}
 
 	@Test
-	void doTest() {
-		var result = rest.postForEntity("/jpa/person", "", String.class);
+	void createPerson() {
+		var req = JpaPersonReq.builder()
+				.name("name")
+				.build();
+		var result = rest.postForEntity("/jpa/person", req, JpaPersonReq.class);
 		Assertions.assertThat(result.getStatusCode().is2xxSuccessful()).isTrue();
 	}
 }

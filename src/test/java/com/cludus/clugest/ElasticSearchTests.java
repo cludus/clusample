@@ -42,7 +42,7 @@ class ElasticSearchTests {
 	}
 
 	@Test
-	void doTest() {
+	void createPost() {
 		var req = EsPostReq.builder()
 				.title("title")
 				.content("my content")

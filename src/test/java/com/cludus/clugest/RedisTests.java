@@ -1,12 +1,11 @@
 package com.cludus.clugest;
 
-import com.cludus.clugest.dtos.CassChatMessageReq;
+import com.cludus.clugest.dtos.RedisAuthCodeReq;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.test.context.ActiveProfiles;
@@ -44,8 +43,12 @@ class RedisTests {
 	}
 
 	@Test
-	void doTest() {
-        var result = rest.postForEntity("/redis/auth-code", "", String.class);
+	void createCode() {
+        var req = RedisAuthCodeReq.builder()
+                .code("1234")
+                .userId("1")
+                .build();
+        var result = rest.postForEntity("/redis/auth-code", req, RedisAuthCodeReq.class);
         Assertions.assertThat(result.getStatusCode().is2xxSuccessful()).isTrue();
 	}
 }

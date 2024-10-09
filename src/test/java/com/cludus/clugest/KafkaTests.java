@@ -1,6 +1,7 @@
 package com.cludus.clugest;
 
 import com.cludus.clugest.dtos.CassChatMessageReq;
+import com.cludus.clugest.dtos.KfkPlayEventReq;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -46,8 +47,11 @@ class KafkaTests {
 	}
 
 	@Test
-	void doTest() {
-		var result = rest.postForEntity("/kafka/play-event", null, String.class);
+	void playEvent() {
+		var req = KfkPlayEventReq.builder()
+				.id("id")
+				.build();
+		var result = rest.postForEntity("/kafka/play-event", req, KfkPlayEventReq.class);
 		Assertions.assertThat(result.getStatusCode().is2xxSuccessful()).isTrue();
 	}
 }

@@ -61,7 +61,7 @@ class CassandraTests {
 	}
 
 	@Test
-	void testAddCassandra() {
+	void addMessage() {
 		var req = CassChatMessageReq.builder()
 				.content("asdfasdf")
 				.senderId("user1")
