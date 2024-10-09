@@ -71,7 +71,7 @@ class CassandraTests {
 				.receiverId("user2")
 				.timestamp(System.currentTimeMillis())
 				.build();
-		var result = rest.postForEntity("http://localhost:8080/cassandra/chat-message", req, CassChatMessageReq.class);
+		var result = rest.postForEntity("http://localhost:" + serverPort + "/cassandra/chat-message", req, CassChatMessageReq.class);
 		Assertions.assertThat(result.getStatusCode().is2xxSuccessful()).isTrue();
 	}
 }
