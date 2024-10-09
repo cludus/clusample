@@ -1,6 +1,7 @@
 package com.cludus.clugest;
 
 import com.datastax.oss.driver.api.core.CqlSession;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -50,7 +51,7 @@ class CassandraTests {
 		}
 	}
 
-	@BeforeAll
+	@AfterAll
 	static void afterAll() {
 		CONTAINER.stop();
 	}

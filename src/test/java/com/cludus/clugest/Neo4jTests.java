@@ -1,5 +1,6 @@
 package com.cludus.clugest;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,7 +24,6 @@ class Neo4jTests {
 
 	@DynamicPropertySource
 	static void configureProperties(DynamicPropertyRegistry registry) {
-		CONTAINER.start();
 		registry.add("spring.neo4j.uri", CONTAINER::getBoltUrl);
 		registry.add("spring.neo4j.authentication.username", () -> "neo4j");
 		registry.add("spring.neo4j.authentication.password", CONTAINER::getAdminPassword);
@@ -31,10 +31,10 @@ class Neo4jTests {
 
 	@BeforeAll
 	static void beforeAll() {
-
+		CONTAINER.start();
 	}
 
-	@BeforeAll
+	@AfterAll
 	static void afterAll() {
 		CONTAINER.stop();
 	}
