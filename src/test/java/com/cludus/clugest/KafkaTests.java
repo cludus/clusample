@@ -1,31 +1,24 @@
 package com.cludus.clugest;
 
-import com.datastax.oss.driver.api.core.CqlSession;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Import;
+import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
-import org.springframework.web.client.RestTemplate;
-import org.testcontainers.containers.CassandraContainer;
 import org.testcontainers.containers.KafkaContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.utility.DockerImageName;
-
-import java.net.InetSocketAddress;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT )
 @ActiveProfiles("kafka")
 class KafkaTests {
 
-	private RestTemplate rest = new RestTemplate();
-
-	@Value("${server.port}")
-	private int serverPort;
+	@Autowired
+	private TestRestTemplate rest;
 
 	@Container
 	private static final KafkaContainer CONTAINER
