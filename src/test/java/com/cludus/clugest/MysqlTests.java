@@ -1,5 +1,7 @@
 package com.cludus.clugest;
 
+import com.cludus.clugest.dtos.CassChatMessageReq;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -53,6 +55,7 @@ class MysqlTests {
 
 	@Test
 	void doTest() {
-
+		var result = rest.postForEntity("/jpa/person", "", String.class);
+		Assertions.assertThat(result.getStatusCode().is2xxSuccessful()).isTrue();
 	}
 }

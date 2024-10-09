@@ -1,5 +1,8 @@
 package com.cludus.clugest;
 
+import com.cludus.clugest.dtos.CassChatMessageReq;
+import com.cludus.clugest.dtos.MgoProductDto;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -45,6 +48,8 @@ class MongodbTests {
 
 	@Test
 	void doTest() {
-
+		var req = MgoProductDto.builder().name("product").build();
+		var result = rest.postForEntity("/mongo/product", req, MgoProductDto.class);
+		Assertions.assertThat(result.getStatusCode().is2xxSuccessful()).isTrue();
 	}
 }
