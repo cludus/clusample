@@ -9,26 +9,27 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.web.client.RestTemplate;
-import org.testcontainers.elasticsearch.ElasticsearchContainer;
+import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.utility.DockerImageName;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT )
-@ActiveProfiles("elasticsearch")
-class ElasticSearchTests {
+@ActiveProfiles("redis")
+class RedisTests {
 
-	private RestTemplate rest = new RestTemplate();
+    private RestTemplate rest = new RestTemplate();
 
-	@Value("${server.port}")
-	private int serverPort;
+    @Value("${server.port}")
+    private int serverPort;
 
 	@Container
-	private static final ElasticsearchContainer CONTAINER = new ElasticsearchContainer(DockerImageName.parse("docker.elastic.co/elasticsearch/elasticsearch:7.17.10"))
-			.withEnv("discovery.type", "single-node");
+	private static final GenericContainer<?> CONTAINER =
+                    new GenericContainer<>(DockerImageName.parse("redis:latest"))
+                        .withExposedPorts(6379);;
 
 	@DynamicPropertySource
 	static void configureProperties(DynamicPropertyRegistry registry) {
-		registry.add("spring.elasticsearch.uris", () -> "http://" + CONTAINER.getHttpHostAddress());
+		registry.add("spring.data.redis.host", CONTAINER::getHost);
 	}
 
 	@BeforeAll

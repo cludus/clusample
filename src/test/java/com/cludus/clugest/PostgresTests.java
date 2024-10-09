@@ -3,6 +3,7 @@ package com.cludus.clugest;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.DynamicPropertyRegistry;
@@ -11,11 +12,14 @@ import org.springframework.web.client.RestTemplate;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT )
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT )
 @ActiveProfiles("jpa")
 class PostgresTests {
 
 	private RestTemplate rest = new RestTemplate();
+
+	@Value("${server.port}")
+	private int serverPort;
 
 	@Container
 	private static final PostgreSQLContainer<?> CONTAINER = new PostgreSQLContainer<>("pgvector/pgvector:pg16")
