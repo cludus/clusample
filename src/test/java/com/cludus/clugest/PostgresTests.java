@@ -4,17 +4,18 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
+import org.springframework.web.client.RestTemplate;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 
-@Import(TestcontainersConfiguration.class)
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT )
 @ActiveProfiles("jpa")
 class PostgresTests {
+
+	private RestTemplate rest = new RestTemplate();
 
 	@Container
 	private static final PostgreSQLContainer<?> CONTAINER = new PostgreSQLContainer<>("pgvector/pgvector:pg16")
@@ -48,11 +49,7 @@ class PostgresTests {
 	}
 
 	@Test
-	void contextLoads() {
-
-	}
-
-	void testPostgres() {
+	void doTest() {
 
 	}
 }

@@ -4,19 +4,19 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
-import org.testcontainers.containers.GenericContainer;
+import org.springframework.web.client.RestTemplate;
 import org.testcontainers.elasticsearch.ElasticsearchContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.utility.DockerImageName;
 
-@Import(TestcontainersConfiguration.class)
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT )
 @ActiveProfiles("elasticsearch")
 class ElasticSearchTests {
+
+	private RestTemplate rest = new RestTemplate();
 
 	@Container
 	private static final ElasticsearchContainer CONTAINER = new ElasticsearchContainer(DockerImageName.parse("docker.elastic.co/elasticsearch/elasticsearch:7.17.10"))
@@ -38,11 +38,7 @@ class ElasticSearchTests {
 	}
 
 	@Test
-	void contextLoads() {
-
-	}
-
-	void testPostgres() {
+	void doTest() {
 
 	}
 }

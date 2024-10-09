@@ -4,18 +4,19 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
+import org.springframework.web.client.RestTemplate;
 import org.testcontainers.containers.Neo4jContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.utility.DockerImageName;
 
-@Import(TestcontainersConfiguration.class)
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT )
 @ActiveProfiles("neo4j")
 class Neo4jTests {
+
+	private RestTemplate rest = new RestTemplate();
 
 	@Container
 	private static final Neo4jContainer<?> CONTAINER
@@ -40,11 +41,7 @@ class Neo4jTests {
 	}
 
 	@Test
-	void contextLoads() {
-
-	}
-
-	void testAddCassandra() {
+	void doTest() {
 
 	}
 }
