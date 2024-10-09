@@ -8,6 +8,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.MySQLContainer;
+import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.utility.DockerImageName;
 
 @Import(TestcontainersConfiguration.class)
@@ -15,6 +16,7 @@ import org.testcontainers.utility.DockerImageName;
 @ActiveProfiles("jpa")
 class MysqlTests {
 
+	@Container
 	private static final MySQLContainer<?> CONTAINER = new MySQLContainer<>(DockerImageName.parse("mysql:latest"))
 			.withDatabaseName("clugest_real_state")
 			.withUsername("testuser")
@@ -38,6 +40,11 @@ class MysqlTests {
 	@BeforeAll
 	static void beforeAll() {
 		CONTAINER.start();
+	}
+
+	@BeforeAll
+	static void afterAll() {
+		CONTAINER.stop();
 	}
 
 	@Test

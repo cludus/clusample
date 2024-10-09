@@ -1,6 +1,5 @@
 package com.cludus.clugest.controllers;
 
-import com.cludus.clugest.services.CassChatMessageService;
 import com.cludus.clugest.services.EsPostService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

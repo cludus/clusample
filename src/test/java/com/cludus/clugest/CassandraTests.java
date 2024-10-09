@@ -9,6 +9,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.CassandraContainer;
+import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.utility.DockerImageName;
 import java.net.InetSocketAddress;
 
@@ -17,7 +18,8 @@ import java.net.InetSocketAddress;
 @ActiveProfiles("cassandra")
 class CassandraTests {
 
-	private static final CassandraContainer<?> CASSANDRA_CONTAINER
+	@Container
+	private static final CassandraContainer<?> CONTAINER
 			= new CassandraContainer<>(DockerImageName.parse("cassandra:latest"))
 				.withExposedPorts(9042);
 
@@ -25,27 +27,32 @@ class CassandraTests {
 
 	@DynamicPropertySource
 	static void configureProperties(DynamicPropertyRegistry registry) {
-		registry.add("spring.cassandra.port", () -> CASSANDRA_CONTAINER.getMappedPort(9042));
-		registry.add("spring.cassandra.contact-points", CASSANDRA_CONTAINER::getHost);
-		registry.add("spring.cassandra.username", CASSANDRA_CONTAINER::getUsername);
-		registry.add("spring.cassandra.password", CASSANDRA_CONTAINER::getPassword);
+		registry.add("spring.cassandra.port", () -> CONTAINER.getMappedPort(9042));
+		registry.add("spring.cassandra.contact-points", CONTAINER::getHost);
+		registry.add("spring.cassandra.username", CONTAINER::getUsername);
+		registry.add("spring.cassandra.password", CONTAINER::getPassword);
 		registry.add("spring.cassandra.keyspace-name", () -> KEYSPACE_NAME);
-		registry.add("spring.cassandra.local-datacenter", CASSANDRA_CONTAINER::getLocalDatacenter);
+		registry.add("spring.cassandra.local-datacenter", CONTAINER::getLocalDatacenter);
 	}
 
 	@BeforeAll
 	static void beforeAll() {
-		CASSANDRA_CONTAINER.start();
+		CONTAINER.start();
 		var session = CqlSession.builder()
-				.withLocalDatacenter(CASSANDRA_CONTAINER.getLocalDatacenter())
-				.addContactPoint(InetSocketAddress.createUnresolved(CASSANDRA_CONTAINER.getHost(), CASSANDRA_CONTAINER.getMappedPort(9042)))
-				.withAuthCredentials(CASSANDRA_CONTAINER.getUsername(), CASSANDRA_CONTAINER.getPassword())
+				.withLocalDatacenter(CONTAINER.getLocalDatacenter())
+				.addContactPoint(InetSocketAddress.createUnresolved(CONTAINER.getHost(), CONTAINER.getMappedPort(9042)))
+				.withAuthCredentials(CONTAINER.getUsername(), CONTAINER.getPassword())
 				.build();
 		try (session) {
 			session.execute("CREATE KEYSPACE IF NOT EXISTS " + KEYSPACE_NAME +
 					" WITH replication = \n" +
 					"{'class':'SimpleStrategy','replication_factor':'1'};");
 		}
+	}
+
+	@BeforeAll
+	static void afterAll() {
+		CONTAINER.stop();
 	}
 
 	@Test

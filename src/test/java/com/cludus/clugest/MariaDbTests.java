@@ -9,6 +9,7 @@ import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.MariaDBContainer;
 import org.testcontainers.containers.PostgreSQLContainer;
+import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.utility.DockerImageName;
 
 @Import(TestcontainersConfiguration.class)
@@ -16,6 +17,7 @@ import org.testcontainers.utility.DockerImageName;
 @ActiveProfiles("jpa")
 class MariaDbTests {
 
+	@Container
 	private static final MariaDBContainer<?> CONTAINER = new MariaDBContainer<>(DockerImageName.parse("mariadb:latest"))
 			.withDatabaseName("clugest_real_state")
 			.withUsername("testuser")
@@ -39,6 +41,11 @@ class MariaDbTests {
 	@BeforeAll
 	static void beforeAll() {
 		CONTAINER.start();
+	}
+
+	@BeforeAll
+	static void afterAll() {
+		CONTAINER.stop();
 	}
 
 	@Test

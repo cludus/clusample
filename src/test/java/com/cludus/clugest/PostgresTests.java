@@ -8,12 +8,14 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.PostgreSQLContainer;
+import org.testcontainers.junit.jupiter.Container;
 
 @Import(TestcontainersConfiguration.class)
 @SpringBootTest
 @ActiveProfiles("jpa")
 class PostgresTests {
 
+	@Container
 	private static final PostgreSQLContainer<?> CONTAINER = new PostgreSQLContainer<>("pgvector/pgvector:pg16")
 			.withDatabaseName("clugest_real_state")
 			.withUsername("testuser")
@@ -37,6 +39,11 @@ class PostgresTests {
 	@BeforeAll
 	static void beforeAll() {
 		CONTAINER.start();
+	}
+
+	@BeforeAll
+	static void afterAll() {
+		CONTAINER.stop();
 	}
 
 	@Test
