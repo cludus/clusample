@@ -1,5 +1,6 @@
 package com.cludus.clugest.controllers;
 
+import com.cludus.clugest.dtos.AcknowledgedResp;
 import com.cludus.clugest.dtos.JpaPersonReq;
 import com.cludus.clugest.dtos.JpaPersonResp;
 import com.cludus.clugest.services.JpaPersonService;
@@ -18,13 +19,23 @@ public class JpaPersonController {
     @Autowired
     private JpaPersonService service;
 
-    @GetMapping("/find-all")
-    public void findAll() {
-        log.error("JPA reading");
+    @GetMapping("/{id}")
+    public JpaPersonResp find(@PathVariable("id") Long id) {
+        return service.find(id);
     }
 
     @PostMapping
     public JpaPersonResp create(@RequestBody JpaPersonReq person) {
         return service.create(person);
+    }
+
+    @PostMapping("/{id}")
+    public JpaPersonResp update(@PathVariable("id") Long id, @RequestBody JpaPersonReq person) {
+        return service.update(id, person);
+    }
+
+    @DeleteMapping("/{id}")
+    public AcknowledgedResp delete(@PathVariable("id") Long id) {
+        return service.delete(id);
     }
 }

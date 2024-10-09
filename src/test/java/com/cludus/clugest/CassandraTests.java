@@ -1,6 +1,7 @@
 package com.cludus.clugest;
 
 import com.cludus.clugest.dtos.CassChatMessageReq;
+import com.cludus.clugest.dtos.CassChatMessageResp;
 import com.datastax.oss.driver.api.core.CqlSession;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterAll;
@@ -68,7 +69,12 @@ class CassandraTests {
 				.receiverId("user2")
 				.timestamp(System.currentTimeMillis())
 				.build();
-		var result = rest.postForEntity("/cassandra/chat-message", req, CassChatMessageReq.class);
-		Assertions.assertThat(result.getStatusCode().is2xxSuccessful()).isTrue();
+		var addResult = rest.postForEntity("/cassandra/chat-message", req, CassChatMessageResp.class);
+		Assertions.assertThat(addResult.getStatusCode().is2xxSuccessful()).isTrue();
+		Assertions.assertThat(addResult.getBody()).isNotNull();
+		Assertions.assertThat(addResult.getBody().getId()).isNotNull();
+
+		var getResult = rest.getForEntity("/cassandra/chat-message/" + addResult.getBody().getId(), CassChatMessageResp.class);
+		Assertions.assertThat(getResult.getStatusCode().is2xxSuccessful()).isTrue();
 	}
 }

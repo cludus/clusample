@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Slf4j
 @Profile("kafka")
 @RestController
@@ -17,13 +19,13 @@ public class KfkPlayEventController {
     @Autowired
     private KfkPlayEventService service;
 
-    @GetMapping("/find-all")
-    public void findAll() {
-        log.error("JPA reading");
-    }
-
     @PostMapping
     public KfkPlayEventResp addPlayEvent(@RequestBody KfkPlayEventReq playEvent) {
         return service.addPlayEvent(playEvent);
+    }
+
+    @GetMapping
+    public List<KfkPlayEventResp> poolPlayEvent() {
+        return service.getPlayEvents();
     }
 }

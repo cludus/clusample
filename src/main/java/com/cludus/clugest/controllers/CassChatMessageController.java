@@ -18,9 +18,9 @@ public class CassChatMessageController {
     @Autowired
     private CassChatMessageService service;
 
-    @GetMapping("/find-all")
-    public void findAll() {
-        log.error("cassandra reading");
+    @GetMapping("/{id}")
+    public CassChatMessageResp find(@PathVariable("id") String id) {
+        return service.find(id);
     }
 
     @PostMapping

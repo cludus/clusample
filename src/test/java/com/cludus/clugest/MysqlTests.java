@@ -1,7 +1,9 @@
 package com.cludus.clugest;
 
-import com.cludus.clugest.dtos.CassChatMessageReq;
 import com.cludus.clugest.dtos.JpaPersonReq;
+import com.cludus.clugest.dtos.JpaPersonResp;
+import com.cludus.clugest.dtos.JpaRealStatePropertyReq;
+import com.cludus.clugest.dtos.JpaRealStatePropertyResp;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -59,7 +61,35 @@ class MysqlTests {
 		var req = JpaPersonReq.builder()
 				.name("name")
 				.build();
-		var result = rest.postForEntity("/jpa/person", req, JpaPersonReq.class);
-		Assertions.assertThat(result.getStatusCode().is2xxSuccessful()).isTrue();
+		var createResult = rest.postForEntity("/jpa/person", req, JpaPersonResp.class);
+		Assertions.assertThat(createResult.getStatusCode().is2xxSuccessful()).isTrue();
+		var getResult = rest.getForEntity("/jpa/person/" + createResult.getBody().getId(), JpaPersonResp.class);
+		Assertions.assertThat(getResult.getStatusCode().is2xxSuccessful()).isTrue();
+		var updateResult = rest.postForEntity("/jpa/person/" + createResult.getBody().getId(), req, JpaPersonReq.class);
+		Assertions.assertThat(updateResult.getStatusCode().is2xxSuccessful()).isTrue();
+		rest.delete("/jpa/person/" + createResult.getBody().getId());
+	}
+
+	@Test
+	void createRealStateProperty() {
+		var req = JpaPersonReq.builder()
+				.name("name")
+				.build();
+		var personResult = rest.postForEntity("/jpa/person", req, JpaPersonResp.class);
+		Assertions.assertThat(personResult.getStatusCode().is2xxSuccessful()).isTrue();
+
+		var rsReq = JpaRealStatePropertyReq.builder()
+				.personId(personResult.getBody().getId())
+				.description("description")
+				.address1("address1")
+				.address2("address2")
+				.build();
+		var createResult = rest.postForEntity("/jpa/real-state-property", rsReq, JpaRealStatePropertyResp.class);
+		Assertions.assertThat(createResult.getStatusCode().is2xxSuccessful()).isTrue();
+		var getResult = rest.getForEntity("/jpa/real-state-property/" + createResult.getBody().getId(), JpaRealStatePropertyResp.class);
+		Assertions.assertThat(getResult.getStatusCode().is2xxSuccessful()).isTrue();
+		var updateResult = rest.postForEntity("/jpa/real-state-property/" + createResult.getBody().getId(), req, JpaRealStatePropertyResp.class);
+		Assertions.assertThat(updateResult.getStatusCode().is2xxSuccessful()).isTrue();
+		rest.delete("/jpa/real-state-property/" + createResult.getBody().getId());
 	}
 }

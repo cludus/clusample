@@ -2,7 +2,6 @@ package com.cludus.clugest.controllers;
 
 import com.cludus.clugest.dtos.RedisAuthCodeReq;
 import com.cludus.clugest.dtos.RedisAuthCodeResp;
-import com.cludus.clugest.services.N4jEconomicEntityService;
 import com.cludus.clugest.services.RedisAuthCodeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

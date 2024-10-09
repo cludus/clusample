@@ -7,9 +7,16 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
-public class JpaPersonResp {
+@AllArgsConstructor
+public class JpaRealStatePropertyReq {
     private Long id;
-    private String name;
+
+    private Long personId;
+
+    private String address1;
+
+    private String address2;
+
+    private String description;
 }

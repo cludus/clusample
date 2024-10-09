@@ -1,6 +1,5 @@
 package com.cludus.clugest.controllers;
 
-import com.cludus.clugest.dtos.CassChatMessageReq;
 import com.cludus.clugest.dtos.EsPostReq;
 import com.cludus.clugest.dtos.EsPostResp;
 import com.cludus.clugest.services.EsPostService;
@@ -18,9 +17,9 @@ public class EsPostController {
     @Autowired
     private EsPostService service;
 
-    @GetMapping("/find-all")
-    public void findAll() {
-        log.error("JPA reading");
+    @GetMapping("/{id}")
+    public EsPostResp find(@PathVariable("id") String id) {
+        return service.findPost(id);
     }
 
     @PostMapping

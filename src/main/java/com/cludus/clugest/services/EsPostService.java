@@ -16,4 +16,8 @@ public class EsPostService {
     public EsPostResp createPost(EsPostReq post) {
         return null;
     }
+
+    public EsPostResp findPost(String id) {
+        return null;
+    }
 }

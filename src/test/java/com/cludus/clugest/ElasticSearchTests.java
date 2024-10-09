@@ -23,8 +23,9 @@ class ElasticSearchTests {
 	private TestRestTemplate rest;
 
 	@Container
-	private static final ElasticsearchContainer CONTAINER = new ElasticsearchContainer(DockerImageName.parse("docker.elastic.co/elasticsearch/elasticsearch:7.17.10"))
-			.withEnv("discovery.type", "single-node");
+	private static final ElasticsearchContainer CONTAINER
+			= new ElasticsearchContainer(DockerImageName.parse("docker.elastic.co/elasticsearch/elasticsearch:7.17.10"))
+					.withEnv("discovery.type", "single-node");
 
 	@DynamicPropertySource
 	static void configureProperties(DynamicPropertyRegistry registry) {
@@ -44,10 +45,14 @@ class ElasticSearchTests {
 	@Test
 	void createPost() {
 		var req = EsPostReq.builder()
+				.id("1")
 				.title("title")
 				.content("my content")
 				.build();
-		var result = rest.postForEntity("/elasticsearch/post", req, EsPostReq.class);
-		Assertions.assertThat(result.getStatusCode().is2xxSuccessful()).isTrue();
+		var postResult = rest.postForEntity("/elasticsearch/post", req, EsPostReq.class);
+		Assertions.assertThat(postResult.getStatusCode().is2xxSuccessful()).isTrue();
+
+		var getResult = rest.getForEntity("/elasticsearch/post/" + req.getId(), EsPostReq.class);
+		Assertions.assertThat(getResult.getStatusCode().is2xxSuccessful()).isTrue();
 	}
 }

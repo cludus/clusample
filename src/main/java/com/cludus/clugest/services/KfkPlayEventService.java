@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @Profile("kafka")
 public class KfkPlayEventService {
@@ -14,6 +16,10 @@ public class KfkPlayEventService {
     private KfkPlayEventProducer producer;
 
     public KfkPlayEventResp addPlayEvent(KfkPlayEventReq playEvent) {
+        return null;
+    }
+
+    public List<KfkPlayEventResp> getPlayEvents() {
         return null;
     }
 }
