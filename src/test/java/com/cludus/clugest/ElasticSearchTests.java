@@ -1,6 +1,6 @@
 package com.cludus.clugest;
 
-import com.cludus.clugest.dtos.CassChatMessageReq;
+import com.cludus.clugest.dtos.EsPostReq;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -43,7 +43,11 @@ class ElasticSearchTests {
 
 	@Test
 	void doTest() {
-		var result = rest.postForEntity("/elasticsearch/post", "", String.class);
+		var req = EsPostReq.builder()
+				.title("title")
+				.content("my content")
+				.build();
+		var result = rest.postForEntity("/elasticsearch/post", req, EsPostReq.class);
 		Assertions.assertThat(result.getStatusCode().is2xxSuccessful()).isTrue();
 	}
 }
