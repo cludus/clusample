@@ -1,6 +1,9 @@
 package com.cludus.clugest.services;
 
 import com.cludus.clugest.dtos.*;
+import com.cludus.clugest.mappers.JpaPersonMapper;
+import com.cludus.clugest.mappers.JpaRealStatePropertyMapper;
+import com.cludus.clugest.repositories.JpaPersonRepository;
 import com.cludus.clugest.repositories.JpaRealStatePropertyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
@@ -9,8 +12,12 @@ import org.springframework.stereotype.Service;
 @Service
 @Profile("jpa")
 public class JpaRealStatePropertyService {
+
     @Autowired
     private JpaRealStatePropertyRepository repo;
+
+    @Autowired
+    private JpaRealStatePropertyMapper mapper;
 
     public JpaRealStatePropertyResp findAll(PageReq page) {
         return null;

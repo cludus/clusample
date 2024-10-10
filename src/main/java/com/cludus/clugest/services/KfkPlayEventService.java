@@ -2,6 +2,9 @@ package com.cludus.clugest.services;
 
 import com.cludus.clugest.dtos.KfkPlayEventReq;
 import com.cludus.clugest.dtos.KfkPlayEventResp;
+import com.cludus.clugest.mappers.JpaRealStatePropertyMapper;
+import com.cludus.clugest.mappers.KfkPlayEventMapper;
+import com.cludus.clugest.repositories.JpaRealStatePropertyRepository;
 import com.cludus.clugest.repositories.KfkPlayEventProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
@@ -14,6 +17,9 @@ import java.util.List;
 public class KfkPlayEventService {
     @Autowired
     private KfkPlayEventProducer producer;
+
+    @Autowired
+    private KfkPlayEventMapper mapper;
 
     public KfkPlayEventResp addPlayEvent(KfkPlayEventReq playEvent) {
         return null;
