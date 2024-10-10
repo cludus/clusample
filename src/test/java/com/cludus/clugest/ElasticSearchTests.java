@@ -53,7 +53,7 @@ class ElasticSearchTests {
 		var postResult = rest.postForEntity(path, req, EsPostReq.class);
 		Assertions.assertThat(postResult.getStatusCode().is2xxSuccessful()).isTrue();
 
-		var getResult = rest.getForEntity(path + req.getId(), EsPostReq.class);
+		var getResult = rest.getForEntity(path + "/" + req.getId(), EsPostReq.class);
 		Assertions.assertThat(getResult.getStatusCode().is2xxSuccessful()).isTrue();
 	}
 }
