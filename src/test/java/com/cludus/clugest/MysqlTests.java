@@ -61,13 +61,14 @@ class MysqlTests {
 		var req = JpaPersonReq.builder()
 				.name("name")
 				.build();
-		var createResult = rest.postForEntity("/jpa/person", req, JpaPersonResp.class);
+		String path = "/jpa/person";
+		var createResult = rest.postForEntity(path, req, JpaPersonResp.class);
 		Assertions.assertThat(createResult.getStatusCode().is2xxSuccessful()).isTrue();
-		var getResult = rest.getForEntity("/jpa/person/" + createResult.getBody().getId(), JpaPersonResp.class);
+		var getResult = rest.getForEntity(path + "/" + createResult.getBody().getId(), JpaPersonResp.class);
 		Assertions.assertThat(getResult.getStatusCode().is2xxSuccessful()).isTrue();
-		var updateResult = rest.postForEntity("/jpa/person/" + createResult.getBody().getId(), req, JpaPersonReq.class);
+		var updateResult = rest.postForEntity(path + "/" + createResult.getBody().getId(), req, JpaPersonReq.class);
 		Assertions.assertThat(updateResult.getStatusCode().is2xxSuccessful()).isTrue();
-		rest.delete("/jpa/person/" + createResult.getBody().getId());
+		rest.delete(path + "/" + createResult.getBody().getId());
 	}
 
 	@Test
@@ -84,12 +85,13 @@ class MysqlTests {
 				.address1("address1")
 				.address2("address2")
 				.build();
-		var createResult = rest.postForEntity("/jpa/real-state-property", rsReq, JpaRealStatePropertyResp.class);
+		String path = "/jpa/real-state-property";
+		var createResult = rest.postForEntity(path, rsReq, JpaRealStatePropertyResp.class);
 		Assertions.assertThat(createResult.getStatusCode().is2xxSuccessful()).isTrue();
-		var getResult = rest.getForEntity("/jpa/real-state-property/" + createResult.getBody().getId(), JpaRealStatePropertyResp.class);
+		var getResult = rest.getForEntity(path + "/" + createResult.getBody().getId(), JpaRealStatePropertyResp.class);
 		Assertions.assertThat(getResult.getStatusCode().is2xxSuccessful()).isTrue();
-		var updateResult = rest.postForEntity("/jpa/real-state-property/" + createResult.getBody().getId(), req, JpaRealStatePropertyResp.class);
+		var updateResult = rest.postForEntity(path + "/" + createResult.getBody().getId(), req, JpaRealStatePropertyResp.class);
 		Assertions.assertThat(updateResult.getStatusCode().is2xxSuccessful()).isTrue();
-		rest.delete("/jpa/real-state-property/" + createResult.getBody().getId());
+		rest.delete(path + "/" + createResult.getBody().getId());
 	}
 }

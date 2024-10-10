@@ -1,7 +1,6 @@
 package com.cludus.clugest.controllers;
 
-import com.cludus.clugest.dtos.N4jEconomicEntityReq;
-import com.cludus.clugest.dtos.N4jEconomicEntityResp;
+import com.cludus.clugest.dtos.*;
 import com.cludus.clugest.services.N4jEconomicEntityService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +16,23 @@ public class N4jEconomicEntityController {
     @Autowired
     private N4jEconomicEntityService service;
 
-    @GetMapping("/find-all")
-    public void findAll() {
-        log.error("JPA reading");
+    @GetMapping("/{id}")
+    public N4jEconomicEntityResp find(@PathVariable("id") Long id) {
+        return service.find(id);
     }
 
     @PostMapping
-    public N4jEconomicEntityResp createEntity(@RequestBody N4jEconomicEntityReq entity) {
-        return service.createEntity(entity);
+    public N4jEconomicEntityResp create(@RequestBody N4jEconomicEntityReq person) {
+        return service.create(person);
+    }
+
+    @PostMapping("/{id}")
+    public N4jEconomicEntityResp update(@PathVariable("id") Long id, @RequestBody N4jEconomicEntityReq person) {
+        return service.update(id, person);
+    }
+
+    @DeleteMapping("/{id}")
+    public AcknowledgedResp delete(@PathVariable("id") Long id) {
+        return service.delete(id);
     }
 }

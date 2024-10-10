@@ -1,6 +1,7 @@
 package com.cludus.clugest;
 
 import com.cludus.clugest.dtos.N4jEconomicEntityReq;
+import com.cludus.clugest.dtos.N4jEconomicEntityResp;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -49,7 +50,13 @@ class Neo4jTests {
 		var req = N4jEconomicEntityReq.builder()
 					.name("entity")
 					.build();
-		var result = rest.postForEntity("/neo4j/economic-entity", req, N4jEconomicEntityReq.class);
-		Assertions.assertThat(result.getStatusCode().is2xxSuccessful()).isTrue();
+		String path = "/neo4j/economic-entity";
+		var createResult = rest.postForEntity(path, req, N4jEconomicEntityResp.class);
+		Assertions.assertThat(createResult.getStatusCode().is2xxSuccessful()).isTrue();
+		var getResult = rest.getForEntity(path + "/" + createResult.getBody().getId(), N4jEconomicEntityResp.class);
+		Assertions.assertThat(getResult.getStatusCode().is2xxSuccessful()).isTrue();
+		var updateResult = rest.postForEntity(path + "/" + createResult.getBody().getId(), req, N4jEconomicEntityResp.class);
+		Assertions.assertThat(updateResult.getStatusCode().is2xxSuccessful()).isTrue();
+		rest.delete(path + "/" + createResult.getBody().getId());
 	}
 }

@@ -50,10 +50,11 @@ class KafkaTests {
 		var req = KfkPlayEventReq.builder()
 				.id("id")
 				.build();
-		var postResult = rest.postForEntity("/kafka/play-event", req, KfkPlayEventReq.class);
+		String path = "/kafka/play-event";
+		var postResult = rest.postForEntity(path, req, KfkPlayEventReq.class);
 		Assertions.assertThat(postResult.getStatusCode().is2xxSuccessful()).isTrue();
 
-		var getResult = rest.getForEntity("/kafka/play-event", KfkPlayEventReq.class);
+		var getResult = rest.getForEntity(path, KfkPlayEventReq.class);
 		Assertions.assertThat(getResult.getStatusCode().is2xxSuccessful()).isTrue();
 	}
 }

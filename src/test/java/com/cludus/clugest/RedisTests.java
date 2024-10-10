@@ -1,6 +1,7 @@
 package com.cludus.clugest;
 
 import com.cludus.clugest.dtos.RedisAuthCodeReq;
+import com.cludus.clugest.dtos.RedisAuthCodeResp;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -48,7 +49,10 @@ class RedisTests {
                 .code("1234")
                 .userId("1")
                 .build();
-        var result = rest.postForEntity("/redis/auth-code", req, RedisAuthCodeReq.class);
-        Assertions.assertThat(result.getStatusCode().is2xxSuccessful()).isTrue();
+        var createResult = rest.postForEntity("/redis/auth-code", req, RedisAuthCodeResp.class);
+        Assertions.assertThat(createResult.getStatusCode().is2xxSuccessful()).isTrue();
+
+		var getResult = rest.getForEntity("/redis/auth-code/" + createResult.getBody().getId(), RedisAuthCodeResp.class);
+		Assertions.assertThat(getResult.getStatusCode().is2xxSuccessful()).isTrue();
 	}
 }
