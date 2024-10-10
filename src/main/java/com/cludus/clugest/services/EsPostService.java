@@ -14,7 +14,7 @@ public class EsPostService {
     private EsPostRepository repo;
 
     public EsPostResp createPost(EsPostReq post) {
-        return null;
+        return repo.save(post);
     }
 
     public EsPostResp findPost(String id) {
