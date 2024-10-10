@@ -3,8 +3,10 @@ package com.cludus.clugest.mappers;
 import com.cludus.clugest.dtos.EsPostReq;
 import com.cludus.clugest.dtos.EsPostResp;
 import com.cludus.clugest.model.EsPost;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
+@Profile("elasticsearch")
 @Service
 public class EsPostMapper {
     public EsPostResp toResp(EsPost model) {

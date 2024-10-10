@@ -3,8 +3,10 @@ package com.cludus.clugest.mappers;
 import com.cludus.clugest.dtos.CassChatMessageReq;
 import com.cludus.clugest.dtos.CassChatMessageResp;
 import com.cludus.clugest.model.CassChatMessage;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
+@Profile("cassandra")
 @Service
 public class CassChatMessageMapper {
     public CassChatMessageResp toResp(CassChatMessage model) {

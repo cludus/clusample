@@ -5,10 +5,12 @@ import com.cludus.clugest.dtos.JpaRealStatePropertyResp;
 import com.cludus.clugest.model.JpaRealStateProperty;
 import com.cludus.clugest.repositories.JpaPersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+@Profile("jpa")
 @Service
 public class JpaRealStatePropertyMapper {
 

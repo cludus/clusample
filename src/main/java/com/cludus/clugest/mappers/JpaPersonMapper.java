@@ -3,8 +3,10 @@ package com.cludus.clugest.mappers;
 import com.cludus.clugest.dtos.JpaPersonReq;
 import com.cludus.clugest.dtos.JpaPersonResp;
 import com.cludus.clugest.model.JpaPerson;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
+@Profile("jpa")
 @Service
 public class JpaPersonMapper {
     public JpaPersonResp toResp(JpaPerson model) {

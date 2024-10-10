@@ -3,8 +3,10 @@ package com.cludus.clugest.mappers;
 import com.cludus.clugest.dtos.RedisAuthCodeReq;
 import com.cludus.clugest.dtos.RedisAuthCodeResp;
 import com.cludus.clugest.model.RedisAuthCode;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
+@Profile("redis")
 @Service
 public class RedisAuthCodeMapper {
     public RedisAuthCodeResp toResp(RedisAuthCode model) {
