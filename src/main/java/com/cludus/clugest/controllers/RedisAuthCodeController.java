@@ -1,5 +1,6 @@
 package com.cludus.clugest.controllers;
 
+import com.cludus.clugest.dtos.N4jEconomicEntityResp;
 import com.cludus.clugest.dtos.RedisAuthCodeReq;
 import com.cludus.clugest.dtos.RedisAuthCodeResp;
 import com.cludus.clugest.services.RedisAuthCodeService;
@@ -17,13 +18,12 @@ public class RedisAuthCodeController {
     @Autowired
     private RedisAuthCodeService service;
 
-    @GetMapping("/find-all")
-    public void findAll() {
-        log.error("JPA reading");
+    @GetMapping("/{id}")
+    public RedisAuthCodeResp find(@PathVariable("id") String id) {
+        return service.find(id);
     }
-
     @PostMapping
     public RedisAuthCodeResp create(@RequestBody RedisAuthCodeReq entity) {
-        return service.createCode(entity);
+        return service.create(entity);
     }
 }
