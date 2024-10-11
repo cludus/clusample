@@ -14,11 +14,11 @@
       </jdbc-additional-properties>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="@cassandra.clugest.home" uuid="9c4728d6-8566-45fb-a6d4-179449bb094e">
+    <data-source source="LOCAL" name="clugest@cassandra.clugest.home" uuid="9c4728d6-8566-45fb-a6d4-179449bb094e">
       <driver-ref>cassandra</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.ing.data.cassandra.jdbc.CassandraDriver</jdbc-driver>
-      <jdbc-url>jdbc:cassandra://cassandra.clugest.home:9042</jdbc-url>
+      <jdbc-url>jdbc:cassandra://cassandra.clugest.home:9042/clugest</jdbc-url>
       <jdbc-additional-properties>
         <property name="com.intellij.clouds.kubernetes.db.host.port" />
         <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
