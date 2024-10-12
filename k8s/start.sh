@@ -4,7 +4,7 @@ path=$(realpath "$0")
 dir=$(dirname $path)
 
 ## k3d cluster
-k3d cluster create --config k8s/cluster.yml
+k3d cluster create --config cluster.yml
 
 ## cert-manager
 kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.15.3/cert-manager.yaml
