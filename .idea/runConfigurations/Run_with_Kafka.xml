@@ -1,0 +1,16 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Run with Kafka" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <module name="clugest.main" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.cludus.clugest.ClugestApplication" />
+    <option name="VM_PARAMETERS" value="-DALLOWED_ORIGIN_PATTERNS=http://localhost:[*] -DACTIVE_PROFILES=kafka -DKAFKA_BOOTSTRAP_SERVERS=kafka.clugest.home:9092 -DKAFKA_ADMIN_CLIENT_ID=1 -DKAFKA_CONSUMER_CLIENT_ID=1 -DKAFKA_CONSUMER_GROUP_ID=1 -DKAFKA_PRODUCER_CLIENT_ID=1" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="com.cludus.clugest.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

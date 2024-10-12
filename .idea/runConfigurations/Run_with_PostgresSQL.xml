@@ -1,0 +1,17 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Run with PostgresSQL" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <option name="ACTIVE_PROFILES" value="jpa" />
+    <module name="clugest.main" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.cludus.clugest.ClugestApplication" />
+    <option name="VM_PARAMETERS" value="-DALLOWED_ORIGIN_PATTERNS=http://localhost:[*] -DACTIVE_PROFILES=jpa -DLIQUIBASE_ENABLED=true -DLIQUIBASE_CLEAR_CHECKSUM=false -DJPA_ENABLED=true -DJDBC_USERNAME=clugestuser -DJDBC_PASSWORD=kjl3J9h9hH32Gddhk -DHIKARI_MINIMUM_IDLE=1 -DHIKARI_MAXIMUM_POOL_SIZE=10 -DHIKARI_CONNECTION_TIMEOUT=30000 -DJDBC_DRIVER=org.postgresql.Driver -DJDBC_URL=jdbc:postgresql://postgres.clugest.home:5432/clugest -DHIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQLDialect" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="com.cludus.clugest.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

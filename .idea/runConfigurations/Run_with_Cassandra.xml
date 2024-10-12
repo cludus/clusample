@@ -1,0 +1,17 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Run with Cassandra" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <option name="ACTIVE_PROFILES" value="cassandra" />
+    <module name="clugest.main" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.cludus.clugest.ClugestApplication" />
+    <option name="VM_PARAMETERS" value="-DALLOWED_ORIGIN_PATTERNS=http://localhost:[*] -DACTIVE_PROFILES=cassandra -DCASSANDRA_CONTACT_POINTS=cassandra.clugest.home:9042 -DCASSANDRA_USERNAME=clugest -DCASSANDRA_PASSWORD=kjl3J9h9hH32Gddhk -DCASSANDRA_KEYSPACE=clugest -DCASSANDRA_LOCAL_DC=datacenter1" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="com.cludus.clugest.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

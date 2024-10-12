@@ -1,0 +1,17 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Run with Mongodb" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <option name="ACTIVE_PROFILES" value="mongodb" />
+    <module name="clugest.main" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.cludus.clugest.ClugestApplication" />
+    <option name="VM_PARAMETERS" value="-DALLOWED_ORIGIN_PATTERNS=http://localhost:[*] -DACTIVE_PROFILES=mongodb -DMONGODB_URI=mongodb://mongo.clugest.home:27017/clugest -DMONGODB_USERNAME=clugestuser -DMONGODB_PASSWORD=kjl3J9h9hH32Gddhk" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="com.cludus.clugest.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

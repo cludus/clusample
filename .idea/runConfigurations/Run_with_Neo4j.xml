@@ -1,0 +1,17 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Run with Neo4j" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <option name="ACTIVE_PROFILES" value="neo4j" />
+    <module name="clugest.main" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.cludus.clugest.ClugestApplication" />
+    <option name="VM_PARAMETERS" value="-DALLOWED_ORIGIN_PATTERNS=http://localhost:[*] -DACTIVE_PROFILES=neo4j -DNEO4J_URI=bolt://neo4j.clugest.home:7687 -DNEO4J_USERNAME=neo4j -DNEO4J_PASSWORD=kjl3J9h9hH32Gddhk" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="com.cludus.clugest.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
