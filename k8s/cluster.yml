@@ -22,11 +22,11 @@ registries:
       ghcr.io:
         endpoint:
           - https://ghcr.io
-    configs:
-      ghcr.io:
-        auth:
-          username: <username>
-          password: <password>
+#    configs:
+#      ghcr.io:
+#        auth:
+#          username: <username>
+#          password: <password>
 options:
   k3d: # k3d runtime settings
     wait: true # wait for cluster to be usable before returining; same as `--wait` (default: true)

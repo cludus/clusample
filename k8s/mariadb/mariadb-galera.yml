@@ -97,8 +97,26 @@ metadata:
   name: clugest-mariadb-svc
 spec:
   selector:
-    app.kubernetes.io/name: clugest-mariadb-dply
+    app: clugest-mariadb-pod
   ports:
     - protocol: TCP
       port: 80
       targetPort: 8080
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: clugest-mariadb-ing
+  annotations:
+    ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /jpa/person
+            pathType: Prefix
+            backend:
+              service:
+                name: clugest-mariadb-svc
+                port:
+                  number: 80
