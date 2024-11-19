@@ -4,6 +4,7 @@ import com.cludus.clugest.dtos.KfkPlayEventReq;
 import com.cludus.clugest.dtos.KfkPlayEventResp;
 import com.cludus.clugest.mappers.KfkPlayEventMapper;
 import com.cludus.clugest.repositories.KfkPlayEventProducer;
+import com.cludus.clugest.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,9 @@ public class KfkPlayEventService {
     private KfkPlayEventMapper mapper;
 
     public KfkPlayEventResp addPlayEvent(KfkPlayEventReq playEvent) {
-        return null;
+        var model = mapper.toModel(playEvent);
+        producer.sendMessage(model);
+        return mapper.toResp(model);
     }
 
     public List<KfkPlayEventResp> getPlayEvents() {

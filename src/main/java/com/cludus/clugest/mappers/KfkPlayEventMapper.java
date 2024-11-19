@@ -12,12 +12,22 @@ public class KfkPlayEventMapper {
     public KfkPlayEventResp toResp(KfkPlayEvent model) {
         return KfkPlayEventResp.builder()
                 .id(model.getId())
+                .userId(model.getUserId())
+                .songId(model.getSongId())
+                .songTime(model.getSongTime())
+                .timestamp(model.getTimestamp())
+                .type(model.getType())
                 .build();
     }
 
     public KfkPlayEvent toModel(KfkPlayEventReq req) {
         return KfkPlayEvent.builder()
                 .id(req.getId())
+                .songId(req.getSongId())
+                .songTime(req.getSongTime())
+                .timestamp(req.getTimestamp())
+                .userId(req.getUserId())
+                .type(req.getType())
                 .build();
     }
 }

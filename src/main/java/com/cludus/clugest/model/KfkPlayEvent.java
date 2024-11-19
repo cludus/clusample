@@ -11,4 +11,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class KfkPlayEvent {
     private String id;
+
+    private String userId;
+
+    private String songId;
+
+    private int songTime;
+
+    private long timestamp;
+
+    private String type;
 }
