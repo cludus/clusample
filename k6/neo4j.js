@@ -15,9 +15,11 @@ export default function() {
     },
   };
   const payload = JSON.stringify({
-    "name": "Some Person",
-    "description": "Some Description"
+    "name": "Some Entity"
   });
-  http.post('http://localhost:8080/neo4j/economic-entity', payload, params);
+  let res = http.post('http://localhost:8080/neo4j/economic-entity', payload, params);
+  const ee = res.json();
+  res = http.get('http://localhost:8080/neo4j/economic-entity/' + ee.id, params);
+  console.log(res.json())
   sleep(1);
 }

@@ -17,6 +17,9 @@ export default function() {
   const payload = JSON.stringify({
     "name": "Some Person"
   });
-  http.post('http://localhost:8080/jpa/person', payload, params);
+  let res = http.post('http://localhost:8080/jpa/person', payload, params);
+  const person = res.json();
+  res = http.get('http://localhost:8080/jpa/person/' + person.id, params);
+  console.log(res.json())
   sleep(1);
 }
