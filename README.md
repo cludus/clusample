@@ -1,6 +1,6 @@
-# Cludus Data Ingest
+# Cludus Code Examples
 
-Cludus tools for extraction transformation and load of third-party data
+Cludus code examples for integrating different technologies
 
 # Web Configuration
 
